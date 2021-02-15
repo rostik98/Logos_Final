@@ -1,11 +1,22 @@
 package ua.lviv.lgs.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "entrant")
 public class Entrant {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
+	private String passwordConfirm;
 
 	@Override
 	public String toString() {
@@ -84,6 +95,14 @@ public class Entrant {
 		this.password = password;
 	}
 
+	public Entrant(Entrant entrant) {
+		this.id = entrant.id;
+		this.firstName = entrant.firstName;
+		this.lastName = entrant.lastName;
+		this.email = entrant.email;
+		this.password = entrant.password;
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -152,5 +171,13 @@ public class Entrant {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 }

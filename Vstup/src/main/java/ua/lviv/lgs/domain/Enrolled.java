@@ -1,14 +1,33 @@
 package ua.lviv.lgs.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "enrolled")
 public class Enrolled {
-	private Integer facultyId;
-	private Integer entrantId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	@ManyToOne
+	@JoinColumn(name = "faculty_id", referencedColumnName = "id")
+	private Faculty faculty;
+	@ManyToOne
+	@JoinColumn(name = "entrant_id", referencedColumnName = "id")
+	private Entrant entrant;
+	@Column(name = "comp_score")
 	private Double competitiveScore;
 
 	@Override
 	public String toString() {
-		return "Enrolled [facultyId=" + facultyId + ", entrantId=" + entrantId + ", competitiveScore="
-				+ competitiveScore + "]";
+		return "Enrolled [facultyId=" + faculty + ", entrantId=" + entrant + ", competitiveScore=" + competitiveScore
+				+ "]";
 	}
 
 	/**
@@ -22,10 +41,10 @@ public class Enrolled {
 	 * @param entrantId
 	 * @param competitiveScore
 	 */
-	public Enrolled(Integer facultyId, Integer entrantId, Double competitiveScore) {
+	public Enrolled(Faculty facultyId, Entrant entrantId, Double competitiveScore) {
 		super();
-		this.facultyId = facultyId;
-		this.entrantId = entrantId;
+		this.faculty = facultyId;
+		this.entrant = entrantId;
 		this.competitiveScore = competitiveScore;
 	}
 
@@ -34,8 +53,8 @@ public class Enrolled {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((competitiveScore == null) ? 0 : competitiveScore.hashCode());
-		result = prime * result + ((entrantId == null) ? 0 : entrantId.hashCode());
-		result = prime * result + ((facultyId == null) ? 0 : facultyId.hashCode());
+		result = prime * result + ((entrant == null) ? 0 : entrant.hashCode());
+		result = prime * result + ((faculty == null) ? 0 : faculty.hashCode());
 		return result;
 	}
 
@@ -53,15 +72,15 @@ public class Enrolled {
 				return false;
 		} else if (!competitiveScore.equals(other.competitiveScore))
 			return false;
-		if (entrantId == null) {
-			if (other.entrantId != null)
+		if (entrant == null) {
+			if (other.entrant != null)
 				return false;
-		} else if (!entrantId.equals(other.entrantId))
+		} else if (!entrant.equals(other.entrant))
 			return false;
-		if (facultyId == null) {
-			if (other.facultyId != null)
+		if (faculty == null) {
+			if (other.faculty != null)
 				return false;
-		} else if (!facultyId.equals(other.facultyId))
+		} else if (!faculty.equals(other.faculty))
 			return false;
 		return true;
 	}
@@ -69,29 +88,29 @@ public class Enrolled {
 	/**
 	 * @return the facultyId
 	 */
-	public Integer getFacultyId() {
-		return facultyId;
+	public Faculty getFacultyId() {
+		return faculty;
 	}
 
 	/**
 	 * @param facultyId the facultyId to set
 	 */
-	public void setFacultyId(Integer facultyId) {
-		this.facultyId = facultyId;
+	public void setFacultyId(Faculty facultyId) {
+		this.faculty = facultyId;
 	}
 
 	/**
 	 * @return the entrantId
 	 */
-	public Integer getEntrantId() {
-		return entrantId;
+	public Entrant getEntrantId() {
+		return entrant;
 	}
 
 	/**
 	 * @param entrantId the entrantId to set
 	 */
-	public void setEntrantId(Integer entrantId) {
-		this.entrantId = entrantId;
+	public void setEntrantId(Entrant entrantId) {
+		this.entrant = entrantId;
 	}
 
 	/**

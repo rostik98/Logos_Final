@@ -1,21 +1,40 @@
 package ua.lviv.lgs.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "mark")
 public class Mark {
-	private Integer entrantId;
-	private Integer subjectId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	@ManyToOne
+	@JoinColumn(name = "entrant_id", referencedColumnName = "id")
+	private Entrant entrant;
+	@ManyToOne
+	@JoinColumn(name = "subject_id", referencedColumnName = "id")
+	private Subject subject;
+	@Column(name = "value")
 	private Integer value;
 
 	@Override
 	public String toString() {
-		return "Mark [entrantId=" + entrantId + ", subjectId=" + subjectId + ", value=" + value + "]";
+		return "Mark [entrantId=" + entrant + ", subjectId=" + subject + ", value=" + value + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((entrantId == null) ? 0 : entrantId.hashCode());
-		result = prime * result + ((subjectId == null) ? 0 : subjectId.hashCode());
+		result = prime * result + ((entrant == null) ? 0 : entrant.hashCode());
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
@@ -29,15 +48,15 @@ public class Mark {
 		if (getClass() != obj.getClass())
 			return false;
 		Mark other = (Mark) obj;
-		if (entrantId == null) {
-			if (other.entrantId != null)
+		if (entrant == null) {
+			if (other.entrant != null)
 				return false;
-		} else if (!entrantId.equals(other.entrantId))
+		} else if (!entrant.equals(other.entrant))
 			return false;
-		if (subjectId == null) {
-			if (other.subjectId != null)
+		if (subject == null) {
+			if (other.subject != null)
 				return false;
-		} else if (!subjectId.equals(other.subjectId))
+		} else if (!subject.equals(other.subject))
 			return false;
 		if (value == null) {
 			if (other.value != null)
@@ -58,39 +77,39 @@ public class Mark {
 	 * @param subjectId
 	 * @param value
 	 */
-	public Mark(Integer entrantId, Integer subjectId, Integer value) {
+	public Mark(Entrant entrantId, Subject subjectId, Integer value) {
 		super();
-		this.entrantId = entrantId;
-		this.subjectId = subjectId;
+		this.entrant = entrantId;
+		this.subject = subjectId;
 		this.value = value;
 	}
 
 	/**
 	 * @return the entrantId
 	 */
-	public Integer getEntrantId() {
-		return entrantId;
+	public Entrant getEntrantId() {
+		return entrant;
 	}
 
 	/**
 	 * @param entrantId the entrantId to set
 	 */
-	public void setEntrantId(Integer entrantId) {
-		this.entrantId = entrantId;
+	public void setEntrantId(Entrant entrantId) {
+		this.entrant = entrantId;
 	}
 
 	/**
 	 * @return the subjectId
 	 */
-	public Integer getSubjectId() {
-		return subjectId;
+	public Subject getSubjectId() {
+		return subject;
 	}
 
 	/**
 	 * @param subjectId the subjectId to set
 	 */
-	public void setSubjectId(Integer subjectId) {
-		this.subjectId = subjectId;
+	public void setSubjectId(Subject subjectId) {
+		this.subject = subjectId;
 	}
 
 	/**
