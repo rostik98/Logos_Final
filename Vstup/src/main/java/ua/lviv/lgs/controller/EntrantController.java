@@ -16,9 +16,34 @@ public class EntrantController {
 	@Autowired
 	private EntrantService entrantService;
 
+//	@Autowired
+//	private SubjectService suService;
+//
+//	@Autowired
+//	private FacultyService faService;
+
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {
 		model.addAttribute("userForm", new Entrant());
+//		Subject s = new Subject("Ukrainian language");
+//		suService.save(s);
+//		suService.save(new Subject("Ukrainian literature"));
+//		suService.save(new Subject("Algebra"));
+//		suService.save(new Subject("Geometry"));
+//		suService.save(new Subject("Physic"));
+//		suService.save(new Subject("Geography"));
+//		suService.save(new Subject("Biology"));
+//		suService.save(new Subject("History"));
+//		suService.save(new Subject("Chemistry"));
+//		suService.save(new Subject("Informatics"));
+//		suService.save(new Subject("Physical training"));
+//		suService.save(new Subject("National defense"));
+//		suService.save(new Subject("English"));
+//		suService.save(new Subject("Astronomy"));
+//		//
+//		faService.save(new Faculty("Faculty 1", 8.5, 78));
+//		faService.save(new Faculty("Faculty 2", 9.7, 180));
+//		faService.save(new Faculty("Faculty 3", 7.9, 54));
 
 		return "registration";
 	}

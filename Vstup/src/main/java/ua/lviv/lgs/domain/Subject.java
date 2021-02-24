@@ -68,6 +68,10 @@ public class Subject {
 		this.name = name;
 	}
 
+	public Subject(String string) {
+		this.name = string;
+	}
+
 	/**
 	 * @return the id
 	 */

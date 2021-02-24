@@ -46,6 +46,12 @@ public class Faculty {
 		this.budgetPlaces = budgetPlaces;
 	}
 
+	public Faculty(String name, Double passingScore, Integer budgetPlaces) {
+		this.name = name;
+		this.passingScore = passingScore;
+		this.budgetPlaces = budgetPlaces;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

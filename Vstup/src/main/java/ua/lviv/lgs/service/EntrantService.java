@@ -17,7 +17,7 @@ public class EntrantService {
 
 	public void save(Entrant entrant) {
 		entrant.setPassword(bCryptPasswordEncoder.encode(entrant.getPassword()));
-		entrant.setPassword(bCryptPasswordEncoder.encode(entrant.getPasswordConfirm()));
+		entrant.setPassword(bCryptPasswordEncoder.encode("1"));
 		entrantRepository.save(entrant);
 	}
 
