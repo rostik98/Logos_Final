@@ -1,5 +1,6 @@
 package ua.lviv.lgs.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,18 +16,19 @@ public class Mark {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "entrant_id", referencedColumnName = "id")
 	private Entrant entrant;
-	@ManyToOne
-	@JoinColumn(name = "subject_id", referencedColumnName = "id")
-	private Subject subject;
+//	@OneToOne
+//	@JoinColumn(name = "subject_id", referencedColumnName = "id")
+	@Column(name = "subject_id")
+	private Integer subject_id;
 	@Column(name = "value")
 	private Integer value;
 
 	@Override
 	public String toString() {
-		return "Mark [entrantId=" + entrant + ", subjectId=" + subject + ", value=" + value + "]";
+		return "Mark [entrantId=" + entrant + ", subjectId=" + subject_id + ", value=" + value + "]";
 	}
 
 	@Override
@@ -34,7 +36,7 @@ public class Mark {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((entrant == null) ? 0 : entrant.hashCode());
-		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+		result = prime * result + ((subject_id == null) ? 0 : subject_id.hashCode());
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
@@ -53,10 +55,10 @@ public class Mark {
 				return false;
 		} else if (!entrant.equals(other.entrant))
 			return false;
-		if (subject == null) {
-			if (other.subject != null)
+		if (subject_id == null) {
+			if (other.subject_id != null)
 				return false;
-		} else if (!subject.equals(other.subject))
+		} else if (!subject_id.equals(other.subject_id))
 			return false;
 		if (value == null) {
 			if (other.value != null)
@@ -77,10 +79,10 @@ public class Mark {
 	 * @param subjectId
 	 * @param value
 	 */
-	public Mark(Entrant entrantId, Subject subjectId, Integer value) {
+	public Mark(Entrant entrantId, Integer subjectId, Integer value) {
 		super();
 		this.entrant = entrantId;
-		this.subject = subjectId;
+		this.subject_id = subjectId;
 		this.value = value;
 	}
 
@@ -101,15 +103,15 @@ public class Mark {
 	/**
 	 * @return the subjectId
 	 */
-	public Subject getSubjectId() {
-		return subject;
+	public Integer getSubjectId() {
+		return subject_id;
 	}
 
 	/**
 	 * @param subjectId the subjectId to set
 	 */
-	public void setSubjectId(Subject subjectId) {
-		this.subject = subjectId;
+	public void setSubjectId(Integer subjectId) {
+		this.subject_id = subjectId;
 	}
 
 	/**

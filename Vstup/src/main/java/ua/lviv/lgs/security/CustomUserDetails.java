@@ -25,6 +25,10 @@ public class CustomUserDetails extends Entrant implements UserDetails {
 		// return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
 		return null;
 	}
+//
+//	public Integer getUserID() {
+//		return super.getId();
+//	}
 
 	@Override
 	public String getUsername() {

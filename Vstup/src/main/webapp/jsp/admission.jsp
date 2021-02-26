@@ -23,21 +23,26 @@
 <body>
 <div class="container">
 
-
-
-
-    <form:form method="POST" modelAttribute="marks" class="form-signin">
-        <spring:bind path="value">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-            <h3>Math</h3>
-                <form:input type="number" min="0" max="12" step="1" path="value" class="form-control" placeholder="Mark"
-                            autofocus="true"></form:input>
-                <form:errors path="value"></form:errors>
+        <div style="margin-left: 10%">
+			<div class="w3-container w3-teal">
+				<h1>Create new Periodical</h1>
+			</div>
+			<div class="w3-container">
+           <form:form method="POST" action="${contextPath}/admission" modelAttribute="mark">
+					<table>
+						<tr>
+							<td><form:label path="value">${pageContext.request.userPrincipal.name}</form:label></td>
+							<td><form:input path="value" /></td>
+						</tr>
+						<tr>
+							<td><input type="submit" value="Submit" /></td>
+						</tr>
+					</table>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form:form>
             </div>
-        </spring:bind>
-         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-    </form:form>
-
+	</div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

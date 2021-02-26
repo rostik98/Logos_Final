@@ -26,9 +26,9 @@
 		<!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
 			<h3 class="w3-bar-item">Menu</h3>
-			<a href="/home" class="w3-bar-item w3-button">Home</a> <a
-				href="/admission" class="w3-bar-item w3-button">ADD ENROLLED
-				periodical</a> <a href="#" class="w3-bar-item w3-button">sOMETHING</a>
+			<a href="/home" class="w3-bar-item w3-button">Home</a> 
+			<a href="/admission" class="w3-bar-item w3-button">ADD ENROLLED</a>
+			<a href="#" class="w3-bar-item w3-button">sOMETHING</a>
 		</div>
 
 
@@ -50,6 +50,22 @@
 						Welcome ${pageContext.request.userPrincipal.name} | <a
 							onclick="document.forms['logoutForm'].submit()">Logout</a>
 					</h2>
+				</c:if>
+				
+								<c:if test="${not empty entrants}">
+					<c:forEach items="${entrants}" var="currentEntrant">
+
+						<div class="w3-card-4" style="width: 20%; margin:2%" >
+							<img src="https://kaverisias.com/wp-content/uploads/2018/01/catalog-default-img.gif" alt="Norway" style="width: 100%">
+							<div class="w3-container w3-center">
+								<h3>${currentEntrant.firstName}</h3>
+								<p>${currentEntrant.lastName}</p>
+								<p>${currentEntrant.email}</p>
+							</div>
+							<button class="w3-button w3-block w3-dark-grey">see info about entrant</button>
+						</div>
+
+					</c:forEach>
 				</c:if>
 			</div>
 

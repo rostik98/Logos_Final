@@ -7,8 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import ua.lviv.lgs.domain.Entrant;
+import ua.lviv.lgs.domain.Mark;
 import ua.lviv.lgs.service.EntrantService;
 
 @Controller
@@ -70,9 +72,29 @@ public class EntrantController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String welcome(Model model) {
-		return "home";
+//	@RequestMapping(value = "/home", method = RequestMethod.GET)
+//	public String welcome(Model model) {
+//		return "home";
+//	}
+	@RequestMapping(value = "/admission", method = RequestMethod.GET)
+	public ModelAndView registrationq(Model model) {
+//		model.addAttribute("marks", new Mark());
+//		model.addAttribute("user", new Entrant());
+//		model.addAttribute("subject", new Subject());
+//		Mark mark = new Mark();
+//		mark.setEntrantId(userForm);
+		// System.out.println(userForm);
+		Object attribute = model.getAttribute("userForm");
+		System.out.println(attribute);
+		return new ModelAndView("admission", "mark", new Mark());
+//		return "admission";
 	}
 
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView welcome() {
+		ModelAndView map = new ModelAndView("home");
+		map.addObject("entrants", entrantService.getAllEntrants());
+
+		return map;
+	}
 }
