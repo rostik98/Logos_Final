@@ -13,7 +13,7 @@ public class Subject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column
+	@Column(unique = true)
 	private String name;
 
 	@Override
@@ -66,6 +66,10 @@ public class Subject {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+
+	public Subject(String string) {
+		this.name = string;
 	}
 
 	/**

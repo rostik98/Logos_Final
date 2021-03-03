@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,9 +19,24 @@ public class Mark {
 	@ManyToOne
 	@JoinColumn(name = "entrant_id", referencedColumnName = "id")
 	private Entrant entrant;
-	@ManyToOne
-	@JoinColumn(name = "subject_id", referencedColumnName = "id")
+	@OneToOne
+	@JoinColumn(name = "subject", referencedColumnName = "id")
 	private Subject subject;
+
+	/**
+	 * @return the subject
+	 */
+	public Subject getSubject() {
+		return subject;
+	}
+
+	/**
+	 * @param parameter1 the subject to set
+	 */
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
 	@Column(name = "value")
 	private Integer value;
 
@@ -84,6 +100,22 @@ public class Mark {
 		this.value = value;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Entrant getEntrant() {
+		return entrant;
+	}
+
+	public void setEntrant(Entrant entrant) {
+		this.entrant = entrant;
+	}
+
 	/**
 	 * @return the entrantId
 	 */
@@ -96,20 +128,6 @@ public class Mark {
 	 */
 	public void setEntrantId(Entrant entrantId) {
 		this.entrant = entrantId;
-	}
-
-	/**
-	 * @return the subjectId
-	 */
-	public Subject getSubjectId() {
-		return subject;
-	}
-
-	/**
-	 * @param subjectId the subjectId to set
-	 */
-	public void setSubjectId(Subject subjectId) {
-		this.subject = subjectId;
 	}
 
 	/**

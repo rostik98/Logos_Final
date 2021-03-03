@@ -20,6 +20,10 @@ public class Faculty {
 	@Column
 	private Integer budgetPlaces;
 
+	/**
+	 * @return the entrants
+	 */
+
 	@Override
 	public String toString() {
 		return "Faculty [id=" + id + ", name=" + name + ", passingScore=" + passingScore + ", budgetPlaces="
@@ -41,6 +45,12 @@ public class Faculty {
 	public Faculty(Integer id, String name, Double passingScore, Integer budgetPlaces) {
 		super();
 		this.id = id;
+		this.name = name;
+		this.passingScore = passingScore;
+		this.budgetPlaces = budgetPlaces;
+	}
+
+	public Faculty(String name, Double passingScore, Integer budgetPlaces) {
 		this.name = name;
 		this.passingScore = passingScore;
 		this.budgetPlaces = budgetPlaces;
