@@ -39,8 +39,11 @@ public class FacultyController {
 		List<Mark> filter = mService.getAllMarks().stream().filter(x -> x.getEntrant().getEmail().equals(p.getName()))
 				.collect(Collectors.toList());
 		Faculty findByName = fService.findByName(request.getParameter("name"));
+		Integer nofEnrolleds = enrolledService.getAllEnrolledsOnFaculty(findByName);
 
-//		findByName.setEntrants(filter.get(0).getEntrant());
+		if (nofEnrolleds >= findByName.getBudgetPlaces()) {
+			return "redirect:/home?noPlaces";
+		}
 		Iterator<Mark> iterator = mService.getAllMarks().stream()
 				.filter(x -> x.getEntrant().getEmail().equals(p.getName())).collect(Collectors.toList()).iterator();
 		double avg = 0;
@@ -54,6 +57,9 @@ public class FacultyController {
 			}
 		}
 		avg /= cout;
+		if (avg < findByName.getPassingScore()) {
+			return "redirect:/home?badPass";
+		}
 		enrolledService.save(new Enrolled(findByName, filter.get(0).getEntrant(), avg));
 		return "redirect:/home";
 	}

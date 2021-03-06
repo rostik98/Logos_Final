@@ -1,4 +1,4 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -56,7 +56,7 @@
 					<c:forEach items="${entrants}" var="currentEntrant">
 
 						<div class="w3-card-4" style="width: 20%; margin:2%" >
-							<img src="https://kaverisias.com/wp-content/uploads/2018/01/catalog-default-img.gif" alt="Norway" style="width: 100%">
+							<img src="data:image/jpg;base64, ${currentEntrant.encodedImage}" alt="Norway" style="width: 100%">
 							<div class="w3-container w3-center">
 								<h3>${currentEntrant.firstName}</h3>
 								<p>${currentEntrant.lastName}</p>

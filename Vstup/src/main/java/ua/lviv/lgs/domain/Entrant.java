@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +20,23 @@ public class Entrant {
 	private String email;
 	private String password;
 	private String passwordConfirm;
+
+	@Lob
+	private String encodedImage;
+
+	/**
+	 * @return the encodedImage
+	 */
+	public String getEncodedImage() {
+		return encodedImage;
+	}
+
+	/**
+	 * @param encodedImage the encodedImage to set
+	 */
+	public void setEncodedImage(String encodedImage) {
+		this.encodedImage = encodedImage;
+	}
 
 	@Override
 	public String toString() {
