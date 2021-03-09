@@ -16,9 +16,12 @@
 
     <title>Log in with your account</title>
 
+<link href="style.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -27,28 +30,45 @@
 </head>
 
 <body>
-
+<div id="login">
+<h3 class="text-center text-white pt-5">Login form</h3>
 <div class="container">
-
-    <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
+  <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+    <form method="POST" action="${contextPath}/login" class="form-signin" id="login-form">
+        <h3 class="text-center text-info">Login</h3>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="email" type="text" class="form-control" placeholder="Email"
+            <div class="form-group">
+                                <label for="username" class="text-info">Username:</label><br>
+            <input id="username" name="email" type="text" class="form-control" placeholder="Email"
                    autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
+                   </div>
+                   <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+            <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
+            </div>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+<div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block btn-info btn-md" type="submit">Log In</button>
+            </div>
+             <div id="register-link" class="text-right">
+                                <a href="${contextPath}/registration" class="text-info">Register here</a>
+                            </div>
         </div>
 
     </form>
+    </div>
+    </div>
+    </div>
 
 </div>
 <!-- /container -->
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
